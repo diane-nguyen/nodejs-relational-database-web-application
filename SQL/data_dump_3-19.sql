@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Mar 19, 2020 at 11:57 PM
+-- Generation Time: Mar 19, 2020 at 02:53 PM
 -- Server version: 10.4.11-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -18,26 +18,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-
-DELIMITER $$
 --
--- Procedures
+-- Database: `cs340_nguydian`
 --
-CREATE DEFINER=`cs340_nguydian`@`%` PROCEDURE `DeleteEmployee` (IN `empID` INT)  BEGIN
-    DELETE FROM
-    	Employee_Exhibits
-    WHERE
-    	Employee_Exhibits.FK_EmployeeID = empID;
-        
-	DELETE FROM
-    	Employees
-    WHERE
-    	Employees.EmployeeID = empID;
-
-    
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -50,7 +33,7 @@ CREATE TABLE `Artifacts` (
   `FK_WingID` int(11) NOT NULL DEFAULT 0,
   `Name` varchar(255) NOT NULL,
   `ArtistOrOrigin` varchar(255) DEFAULT NULL,
-  `Year` varchar(255) DEFAULT NULL,
+  `Year` date DEFAULT NULL,
   `Price` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -96,10 +79,9 @@ CREATE TABLE `Employees` (
 --
 
 INSERT INTO `Employees` (`EmployeeID`, `Fname`, `Lname`, `Position`) VALUES
-(1, 'Bob', 'Smith', 'Coordinator'),
-(2, 'Dwight', 'Schrute', 'Salesman'),
-(14, 'Pamela', 'Halpert', 'Receptionist '),
-(16, 'Robert', 'California', 'Coordinator');
+(1, 'John', 'Smith', 'Coordinator'),
+(12, 'Bob', 'Smith', 'Coordinator'),
+(13, 'Dwight', 'Schrute', 'Salesman');
 
 -- --------------------------------------------------------
 
@@ -114,18 +96,6 @@ CREATE TABLE `Employee_Exhibits` (
   `NumberOfShifts` int(11) DEFAULT NULL,
   `Tours` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `Employee_Exhibits`
---
-
-INSERT INTO `Employee_Exhibits` (`ID`, `FK_EmployeeID`, `FK_WingID`, `NumberOfShifts`, `Tours`) VALUES
-(1, 1, 1, 3, 'Coordinator'),
-(5, 13, 9, 5, 'Salesman'),
-(9, 1, 3, 1, 'Tour Guide'),
-(11, 0, 15, 10, 'Manage people'),
-(13, 16, 7, 4, 'Cover\'s Dwight\'s shifts'),
-(14, 14, 10, 1, 'Covers Renaissance Front Desk');
 
 -- --------------------------------------------------------
 
@@ -146,20 +116,20 @@ CREATE TABLE `Exhibits` (
 --
 
 INSERT INTO `Exhibits` (`WingID`, `ExhibitName`, `WingName`, `ThemeERA`, `NumberOfPieces`) VALUES
-(1, 'Spring', 'North', 'Wonders of Earth', 20),
-(2, 'Spring', 'East', 'Deep Sea Mysteries', 22),
-(3, 'Spring', 'South', 'Our Solar System', 31),
-(4, 'Spring', 'West', 'Deep Space', 25),
-(5, 'Roman', 'Ace', 'Ancient Rome', 25),
-(6, 'Roman', 'Spade', 'Ancient Rome', 20),
-(7, 'Roman', 'Heart', 'Ancient Rome', 20),
-(8, 'Roman', 'Club', 'Ancient Rome', 30),
-(9, 'Renaissance', 'Fire', 'Renaissance', 28),
-(10, 'Renaissance', 'Earth', 'Renaissance', 22),
-(11, 'Renaissance', 'Water', 'Renaissance', 30),
-(12, 'Renaissance', 'Air', 'Renaissance', 19),
-(14, 'Summer', 'Blue', 'Classic', 28),
-(15, 'Winter', 'Green', 'Winter Wonder Land', 33);
+(1, 'Spring', 'North', NULL, NULL),
+(2, 'Spring', 'East', NULL, NULL),
+(3, 'Spring', 'South', NULL, NULL),
+(4, 'Spring', 'West', NULL, NULL),
+(5, 'Roman', 'North', NULL, NULL),
+(6, 'Roman', 'East', NULL, NULL),
+(7, 'Roman', 'South', NULL, NULL),
+(8, 'Roman', 'West', NULL, NULL),
+(9, 'Renaissance', 'North', NULL, NULL),
+(10, 'Renaissance', 'East', NULL, NULL),
+(11, 'Renaissance', 'South', NULL, NULL),
+(12, 'Renaissance', 'West', NULL, NULL),
+(14, 'Summer', 'West', 'Classic', 450),
+(15, 'Winter', 'East', 'Winter Wonder Land', 200);
 
 --
 -- Indexes for dumped tables
@@ -182,7 +152,9 @@ ALTER TABLE `Employees`
 -- Indexes for table `Employee_Exhibits`
 --
 ALTER TABLE `Employee_Exhibits`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Employee_Exhibits_ibfk_1` (`FK_EmployeeID`),
+  ADD KEY `Employee_Exhibits_ibfk_2` (`FK_WingID`);
 
 --
 -- Indexes for table `Exhibits`
@@ -198,25 +170,42 @@ ALTER TABLE `Exhibits`
 -- AUTO_INCREMENT for table `Artifacts`
 --
 ALTER TABLE `Artifacts`
-  MODIFY `ArtifactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ArtifactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `Employees`
 --
 ALTER TABLE `Employees`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `Employee_Exhibits`
 --
 ALTER TABLE `Employee_Exhibits`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `Exhibits`
 --
 ALTER TABLE `Exhibits`
   MODIFY `WingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Artifacts`
+--
+ALTER TABLE `Artifacts`
+  ADD CONSTRAINT `Artifacts_ibfk_1` FOREIGN KEY (`FK_WingID`) REFERENCES `Exhibits` (`WingID`);
+
+--
+-- Constraints for table `Employee_Exhibits`
+--
+ALTER TABLE `Employee_Exhibits`
+  ADD CONSTRAINT `Employee_Exhibits_ibfk_1` FOREIGN KEY (`FK_EmployeeID`) REFERENCES `Employees` (`EmployeeID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `Employee_Exhibits_ibfk_2` FOREIGN KEY (`FK_WingID`) REFERENCES `Exhibits` (`WingID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
