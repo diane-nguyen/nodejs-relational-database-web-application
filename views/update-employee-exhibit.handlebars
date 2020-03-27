@@ -1,0 +1,36 @@
+{{>navbar}}
+<div class="container">
+<html>
+<body>
+	<br>
+</br>
+	<h2>Update "{{staff.Fname}} {{staff.Lname}}" Assignment Info:</h2>
+		<br>
+
+	<form class='form' id="update-employee-exhibits" action="/employee_exhibits" method="post">
+	  	<div class="form-row">
+		    <div class="form-group col-md-4">   
+		      	<label>Tour Info</label>
+		      	<input type="text" class="form-control" value="{{staff.Tours}}" name="Tours">
+	      	</div>
+		    <div class="form-group col-md-2">
+		    	<label>Shifts</label>
+		      	<input type="number" class="form-control" value="{{staff.NumberOfShifts}}" name="NumberOfShifts">
+	      	</div>
+		   <div class="form-group col-md-2">
+				<label>Exhibit / Wing</label>
+				<select class='form-control' name="FK_WingID" id="wing-selector"> 
+					{{#each allExhibitWings}}
+					<option value="{{WingID}}">{{ExhibitWing}}</option>
+					{{/each}}
+				</select>
+		    </div>
+	  	</div>
+	</form>
+
+	<button class="btn btn-secondary" onclick="updateEmployeeExhibit({{staff.id}})">Update</button>
+
+	<script src="/updateEmployeeExhibit.js"></script>
+</body>
+</html>
+</div>

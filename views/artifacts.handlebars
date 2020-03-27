@@ -1,0 +1,94 @@
+{{>navbar}}
+<div class="container">
+<br>
+
+<h3>Add Artifact</h3>
+<form id="addStaff" action="/artifacts" method="post">
+    <!-- Name and Artist Row -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Name" name="Name">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Artist or Origin</label>
+            <input type="text" class="form-control"  placeholder="Artist or Origin" name="ArtistOrOrigin">
+        </div>
+    </div>
+    <!-- Year, Price, Wing Name Row -->
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label>Year</label>
+            <input type="text" class="form-control" placeholder="Year" name="Year">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Price</label>
+            <input type="text" class="form-control"  placeholder="Price" name="Price">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="inputState">Exhibit/Wing Name</label>
+            <select class='form-control' name="FK_WingID"> 
+                {{#each allExhibitWings}}
+                <option value="{{WingID}}">{{ExhibitWing}}</option>
+                {{/each}}
+            </select>
+            <br>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
+<p>&nbsp;</p>
+
+<div >
+    <p>&nbsp;</p>
+      
+    <!-- Artifact Display table -->  
+    <h3> Exhibit Artifacts </h3>
+    <table id="artifactTable">
+        <tr>
+    <!--When a header is clicked, run the sortTable function, which fetches data and sorts ASC/DESC based on header clicked:-->  
+            <th onclick="sortArtifactTable(0)">ExhibitName</th>
+            <th onclick="sortArtifactTable(1)">WingName</th>
+            <th onclick="sortArtifactTable(2)">ArtifactName</th>
+            <th onclick="sortArtifactTable(3)">ArtistOrOrigin</th>
+            <th onclick="sortArtifactTable(4)">Year</th>
+            <th onclick="sortArtifactTable(5)">Price</th>
+            <th onclick="sortArtifactTable(6)">Update</th>
+            <th onclick="sortArtifactTable(7)">Delete</th>
+        </tr>
+        {{#each artifacts}}
+        <tr>
+            <td>{{ExhibitName}}</td>
+            <td>{{WingName}}</td>
+            <td>{{Name}}</td>
+            <td>{{ArtistOrOrigin}}</td>
+            <td>{{Year}}</td>
+            <td>{{Price}}</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="/artifacts/{{ArtifactID}}" role="button">Update</a>
+            </td>
+            <td>
+                <input type="button" class="btn btn-danger btn-sm" name="delete" name="delete" value="Delete" onClick="deleteArtifact({{ArtifactID}})">                   
+            </td>
+        </tr>
+        {{/each}}
+    </table>  
+</div>
+<br>
+
+
+<!-- End of HTML, Scripts -->
+<script src="deleteArtifact.js"></script>
+<script src="updateArtifact.js"></script>
+<script src="script.js"></script>
+<script type="text/javascript" src="/scripts/home.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            Handlebars.registerPartial('navbar', '{{navbar}}');
+        })
+</script>
+</div>

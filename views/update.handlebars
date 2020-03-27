@@ -1,0 +1,46 @@
+<h2>Update Exercise</h2>
+<form > 
+    <form id="updateExercise"> 
+
+       {{#if results}}
+
+       <div>
+        <label>Name</label>
+        <input type="text" name="ExName" id="ExName" value = "{{this.ExName}}">
+    </div>
+
+    <div>
+      <label>Reps</label>
+      <input type="number" name="reps" id="reps" value="{{this.reps}}">
+  </div>
+
+  <div>
+      <label>Weight</label>
+      <input type="number" name="weight" id="weight" value = "{{this.weight}}">
+  </div>
+
+  <div>
+      <label>Date</label>
+      <input type="text" name="date" id="date" value = "{{this.date}}">
+  </div>
+      <input type="hidden" name="id" value={{results.id}}>
+
+  <div>
+      <label>Unit Lbs</label>
+   {{#if results.unit}}
+        <input type="checkbox" name="lbsCheck" id="unitCheck" checked><br>
+    {{else}}
+        <input type="checkbox" name="lbsCheck" id="unitCheck"><br>
+    {{/if}}
+  </div>
+
+  {{/if}}
+
+  <div>
+      <label>&nbsp</label>
+      <!-- <a href="/" /> -->
+      <input type="submit" id="submitChange" value="Click to submit exercise info" id="updateExercise">
+  </div>
+</form>
+
+</form>

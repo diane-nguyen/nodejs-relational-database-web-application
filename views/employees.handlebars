@@ -1,0 +1,78 @@
+{{>navbar}}
+<div class="container">
+
+<!-- Staffing Table -->
+<br>
+<h3>Add Staff:</h3>
+<!-- Add Exhibit -->
+<form id="addEmployee" action="/employees" method="post">
+    <!-- Name and Artist Row -->
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label>First Name</label>
+            <input type="text" class="form-control" placeholder="First Name" name="Fname">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Last Name</label>
+            <input type="text" class="form-control"  placeholder="Last Name" name="Lname">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label>Position </label>
+            <input type="text" class="form-control"  placeholder="Position" name="Position">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
+<p>&nbsp;</p>
+
+<!-- Display all employees -->
+<h3> All Employees </h3>
+<table id="artifactTable">
+    <tr>
+    <!--When a header is clicked, run the sortTable function, which fetches data and sorts ASC/DESC based on header clicked:-->  
+        <th onclick="sortArtifactTable(0)">EmployeeID</th>
+        <th onclick="sortArtifactTable(1)">First Name</th>
+        <th onclick="sortArtifactTable(2)">Last Name</th>
+        <th onclick="sortArtifactTable(3)">Position</th>
+        <th onclick="sortArtifactTable(4)">Update</th>
+        <th onclick="sortArtifactTable(5)">Delete</th>
+    </tr>
+        {{#each allstaff}}
+        <tr>
+            <td>{{EmployeeID}}</td>
+            <td>{{Fname}}</td>
+            <td>{{Lname}}</td>
+            <td>{{Position}}</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="/employees/{{EmployeeID}}" role="button">Update</a>
+            </td>
+            <td>
+                <input type="button" class="btn btn-danger btn-sm" name="delete" value="Delete" onClick="deleteEmployee({{EmployeeID}})">
+            </td>
+        </tr>
+        {{/each}}
+</table>
+
+<br/>
+<p>&nbsp;</p>
+<br>
+
+       
+<br>
+
+<!-- end of html, scripts -->
+<script src="updateEmployee.js"></script>
+<script src="filterwing.js"></script> 
+<script src="deleteEmployee.js"></script>
+<script type="text/javascript" src="/scripts/home.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            Handlebars.registerPartial('navbar', '{{navbar}}');
+        })
+</script>
+</div>

@@ -1,0 +1,32 @@
+{{>navbar}}
+<div class="container">
+<html>
+<body>
+	<br>
+</br>
+	<h2>Update "{{artifacts.Fname}} {{artifacts.Lname}}" Employee Info:</h2>
+		<br>
+
+	<form class='form' id="update-employee" action="/employees" method="post">
+	  	<div class="form-row">
+		    <div class="form-group col-md-4">
+		    	<label>First Name</label>
+		      	<input type="text" class="form-control" value="{{artifacts.Fname}}" name="Fname">
+	      	</div>
+		    <div class="form-group col-md-4">      
+		      	<label>Last Name</label>
+		      	<input type="text" class="form-control" value="{{artifacts.Lname}}" name="Lname">
+		      	      </div>
+		    <div class="form-group col-md-4">   
+		      	<label>Position</label>
+		      	<input type="text" class="form-control" value="{{artifacts.Position}}" name="Position">
+	      	</div>
+	  	</div>
+	</form>
+
+	<button class="btn btn-secondary" onclick="updateEmployee({{artifacts.id}})">Update</button>
+
+	<script src="/updateEmployee.js"></script>
+</body>
+</html>
+</div>

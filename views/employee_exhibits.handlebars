@@ -1,0 +1,104 @@
+{{>navbar}}
+<div class="container">
+
+<br>
+<h3>Add Scheduling:</h3>
+
+
+<form id="addSchedule" action="/employee_exhibits" method="post">
+    <!-- Name and Artist Row -->
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Employee</label>
+           <select class='form-control' name="FK_EmployeeID"> 
+                {{#each allstaff}}
+                <option value="{{EmployeeID}}">{{fullName}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Exhibit / Wing</label>
+            <select class='form-control' name="FK_WingID"> 
+                {{#each allExhibitWings}}
+                <option value="{{WingID}}">{{ExhibitWing}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Number of Shifts:</label>
+            <input type="text" class="form-control" placeholder="NumberOfShifts" name="NumberOfShifts">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Tours: </label>
+            <input type="text" class="form-control" placeholder="Tours" name="Tours">
+        </div>
+
+    </div>
+    <!-- Year, Price, Wing Name Row -->
+   
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
+
+
+
+
+
+<br/>
+<p>&nbsp;</p>
+
+<div >
+<h3> Exhibit Staffing </h3>
+<table id="artifactTable">
+  <tr>
+   <!--When a header is clicked, run the sortTable function, which fetches data and sorts ASC/DESC based on header clicked:-->  
+    <th onclick="sortArtifactTable(0)">StaffID</th>
+    <th onclick="sortArtifactTable(1)">EmpID</th>
+    <th onclick="sortArtifactTable(2)">First Name</th>
+    <th onclick="sortArtifactTable(3)">Last Name</th>
+    <th onclick="sortArtifactTable(4)">Wing Name</th>
+    <th onclick="sortArtifactTable(5)">Exhibit Name</th>
+    <th onclick="sortArtifactTable(6)">Num. of Shifts</th>
+    <th onclick="sortArtifactTable(7)">Tour Info</th>
+    <th onclick="sortArtifactTable(8)">Update</th>
+    <th onclick="sortArtifactTable(9)">Delete</th>
+  </tr>
+
+        {{#each staffing}}
+            <tr>
+                <td>{{ID}}</td>
+                <td>{{EmployeeID}}</td>
+                <td>{{Fname}}</td>
+                <td>{{Lname}}</td>
+                <td>{{WingName}}</td>
+                <td>{{ExhibitName}}</td>
+                <td>{{NumberOfShifts}}</td>
+                <td>{{Tours}}</td>
+                {{!-- <td><a href="/exhibits/{{EmployeeID}}">Update</a></td> --}}
+                <td> 
+                    <a class="btn btn-primary btn-sm" href="/employee_exhibits/{{ID}}" role="button">Update</a>
+                <td>
+                    <input type="button" class="btn btn-danger btn-sm" name="delete" value="Delete" onClick="deleteStaffing({{ID}})">
+                </td>
+
+            </tr>
+        {{/each}}
+</table>
+
+        <br/>
+<p>&nbsp;</p>
+       
+<br>
+<!-- <script src="filterwing.js"></script> -->
+<script src="deleteStaffing.js"></script>
+<script src="script.js"></script>
+<script type="text/javascript" src="/scripts/home.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            Handlebars.registerPartial('navbar', '{{navbar}}');
+        })
+</script>
+</div>

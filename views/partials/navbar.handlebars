@@ -1,0 +1,67 @@
+{{!-- reference for using partials w/ handlebars
+https://docs.google.com/document/d/1Q8T6Q2sxPCfuUcKgaCSvONEXaAVBuca_wrd59iWhgQs/edit --}}
+<div class="header container-fluid text-center bg-secondary">
+  <div class="container-fluid text-center bg-secondary">
+    <h1 class="display-4">Institute of Curiosity</h1>
+    <p class="lead">Administration  - Exhibition Staffing and Artifacts</p>
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
+  <a class="navbar-brand" href="/">Institute of Curiosity</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/exhibits">Exhibits</a>
+      <a class="nav-item nav-link" href="/employees">Employees</a>
+      <a class="nav-item nav-link" href="/employee_exhibits">Scheduling</a>
+      <a class="nav-item nav-link" href="/artifacts">Artifacts</a>
+    </div>
+  </div>
+</nav>
+
+
+{{!-- Took out drop down menu because I dont think we need it if 
+      we're gonna have add student on the same page  --}}
+{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Institute of Curiosity</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Exhibits
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/exhibits">All Exhibits</a>
+          <a class="dropdown-item" href="/addExhibit">Add Exhibit</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Employees
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/employees">All Employees</a>
+          <a class="dropdown-item" href="/addEmployee">Add Employee</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Artifacts
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/artifacts">All Artifacts</a>
+          <a class="dropdown-item" href="/addArtifact">Add Artifact</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav> --}}

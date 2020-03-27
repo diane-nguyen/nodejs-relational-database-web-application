@@ -1,0 +1,43 @@
+{{>navbar}}
+<div class="container">
+<html>
+
+<body>
+	<br>
+	<h2>Update "{{artifactInfo.Name}}" Artifact Info:</h2>
+
+	<!-- Update Form -->
+	<br>
+	<form class='form' id="update-artifact" action="/artifacts" method="post">
+	  	<div class="form-row">
+		    <div class="form-group col-md-6">
+		    	<label>Name</label>
+		      	<input type="text" class="form-control" value="{{artifactInfo.Name}}" name="Name">
+	      	</div>
+		    <div class="form-group col-md-2">      
+		      	<label>Price</label>
+		      	<input type="text" class="form-control" value="{{artifactInfo.Price}}" name="Price">
+		      	      </div>
+		    <div class="form-group col-md-2">   
+		      	<label>Year</label>
+		      	<input type="text" class="form-control" value="{{artifactInfo.Year}}" name="Year">
+	      	</div>
+		    <div class="form-group col-md-2">
+		    	<label>Exhibit / Wing</label>
+				<select class='form-control' name="FK_WingID" id="wing-selector"> 
+					{{#each allExhibitWings}}
+					<option value="{{WingID}}">{{ExhibitWing}}</option>
+					{{/each}}
+				</select>
+		    </div>
+	  	</div>
+	</form>
+
+	<button class="btn btn-secondary" onclick="updateArtifact({{artifactInfo.id}})">Update</button>
+</div>
+
+<!-- update script reference -->
+<script src="/updateArtifact.js"></script>
+</body>
+</html>
+</div>

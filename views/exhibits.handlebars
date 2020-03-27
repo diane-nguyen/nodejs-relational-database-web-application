@@ -1,0 +1,131 @@
+{{>navbar}}
+<div class="container">
+    <br>
+    {{!-- This should filter by exhibit  --}}
+    <h2>Choose Exhibit</h2>
+        <form class='form-inline ' id='filter_exhibit' action='' method=''>
+        <!--- this form does not submit directly, the button handles all the interaction with backend -->
+        <div class="form-group mx-sm-3 mb-2">
+            <label > Filter by Exhibit Name <p>&nbsp;</p ></label>
+            <select class='form-control' id='exhibit_filter' name="exhibit_name"> 
+                {{#each ExhibitList}}
+                <option value="{{ExhibitName}}">{{ExhibitName}}</option>
+                {{/each}}
+            </select><br>
+        </div>
+            <input class='btn btn-primary mb-2' type="button" value="Filter" onclick="filterByExhibitName()">
+        </form>
+
+  <form action="/exhibits">
+    <input class="btn btn-secondary btn-sm" type="submit" value="Clear Filter" />
+</form>  
+    <br>
+
+<!-- Add Exhibit -->
+{{!-- Create / Add Exhibit  --}}
+<h3>Add Exhibit:</h3>
+
+<form id="addExhibit" action="/exhibits" method="post">
+    <!-- Name and Artist Row -->
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>ExhibitName:</label>
+            <input type="text" class="form-control" placeholder="ExhibitName" name="ExhibitName">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Wing Name: </label>
+            <select class='form-control'  name="WingName"> 
+                {{#each wingList}}
+                <option value="{{WingName}}">{{WingName}}</option>
+                {{/each}}
+            </select><br>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Theme/Era</label>
+           <input type="text" class="form-control" placeholder="ThemeEra" name="ThemeEra">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Number of Pieces:</label>
+            <input type="text" class="form-control" placeholder="NumberOfPieces" name="NumberOfPieces">
+        </div>
+    </div>
+   
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
+
+<p>&nbsp;</p>
+
+<div >
+<h3> Exhibit Staffing </h3>
+<table id="artifactTable">
+  <tr>
+   <!--When a header is clicked, run the sortTable function, which fetches data and sorts ASC/DESC based on header clicked:-->  
+    <th onclick="sortArtifactTable(0)">WingID</th>
+    <th onclick="sortArtifactTable(1)">EmployeeID</th>
+    <th onclick="sortArtifactTable(2)">Position</th>
+    <th onclick="sortArtifactTable(3)">ExhibitName</th>
+    <th onclick="sortArtifactTable(4)">WingName</th>
+  </tr>
+
+        {{#each staffing}}
+            <tr>
+                <td>{{WingID}}</td>
+                <td>{{EmployeeID}}</td>
+                <td>{{Position}}</td>
+                <td>{{ExhibitName}}</td>
+                <td>{{WingName}}</td>
+               
+            </tr>
+        {{/each}}
+</table>
+
+        <br/>
+<p>&nbsp;</p>
+  
+<h3> Exhibit Artifacts </h3>
+<table id="artifactTable">
+  <tr>
+   <!--When a header is clicked, run the sortTable function, which fetches data and sorts ASC/DESC based on header clicked:-->  
+    <th onclick="sortArtifactTable(0)">ExhibitName</th>
+    <th onclick="sortArtifactTable(1)">WingName</th>
+    <th onclick="sortArtifactTable(2)">ArtifactName</th>
+    <th onclick="sortArtifactTable(3)">ArtistOrOrigin</th>
+    <th onclick="sortArtifactTable(4)">Year</th>
+    <th onclick="sortArtifactTable(5)">Price</th>
+  </tr>
+
+
+        {{#each artifacts}}
+            <tr>
+                <td>{{ExhibitName}}</td>
+                <td>{{WingName}}</td>
+                <td>{{Name}}</td>
+                <td>{{ArtistOrOrigin}}</td>
+                <td>{{Year}}</td>
+                <td>{{Price}}</td>
+
+            </tr>
+        {{/each}}
+</table>
+
+
+
+
+        <br>
+
+       
+<br>
+<script src="filterwing.js"></script>
+<script src="updateExhibit.js"></script>
+<script src="script.js"></script>
+<script type="text/javascript" src="/scripts/home.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            Handlebars.registerPartial('navbar', '{{navbar}}');
+        })
+</script>
+</div>
