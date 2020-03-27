@@ -1,3 +1,1 @@
-"scripts": {
-  "start": "node diagnostic.js"
-}
+web: node diagnostic.js
