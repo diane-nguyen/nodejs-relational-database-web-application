@@ -1,8 +1,8 @@
 {
-  "name": "hello-world",
+  "name": "cs340-instituteofcuriosity",
   "version": "1.0.0",
-  "description": "Hello world with express and node.js",
-  "main": "app.js",
+  "description": "Relational Database Web Application",
+  "main": "diagnostic.js",
   "scripts": {
     "start": "node diagnostic.js",
     "test": "echo \"Error: no test specified\" && exit 1"
