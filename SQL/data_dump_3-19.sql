@@ -33,7 +33,7 @@ CREATE TABLE `Artifacts` (
   `FK_WingID` int(11) NOT NULL DEFAULT 0,
   `Name` varchar(255) NOT NULL,
   `ArtistOrOrigin` varchar(255) DEFAULT NULL,
-  `Year` date DEFAULT NULL,
+  `Year` varchar(255) DEFAULT NULL,
   `Price` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
